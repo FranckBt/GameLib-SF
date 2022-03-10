@@ -4,10 +4,12 @@ namespace App\Entity;
 
 use App\Repository\UsersRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 
 #[ORM\Entity(repositoryClass: UsersRepository::class)]
+#[UniqueEntity(fields: ['email'], message: 'There is already an account with this email')]
 class Users implements UserInterface, PasswordAuthenticatedUserInterface
 {
     #[ORM\Id]
@@ -25,16 +27,16 @@ class Users implements UserInterface, PasswordAuthenticatedUserInterface
     private $password;
 
     #[ORM\Column(type: 'string', length: 255)]
-    private $name;
+    private $nameUser;
 
     #[ORM\Column(type: 'string', length: 255)]
-    private $firstname;
+    private $firstNameUser;
 
     #[ORM\Column(type: 'string', length: 255)]
     private $pseudo;
 
     #[ORM\Column(type: 'datetime_immutable')]
-    private $accountCreationUser;
+    private $accounCreationDateUser;
 
     #[ORM\Column(type: 'datetime', nullable: true)]
     private $accountValidationUser;
@@ -48,6 +50,9 @@ class Users implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\ManyToOne(targetEntity: Roles::class)]
     #[ORM\JoinColumn(nullable: false)]
     private $id_role;
+
+    #[ORM\Column(type: 'boolean')]
+    private $isVerified = false;
 
     public function getId(): ?int
     {
@@ -119,29 +124,30 @@ class Users implements UserInterface, PasswordAuthenticatedUserInterface
         // $this->plainPassword = null;
     }
 
-    public function getName(): ?string
+    public function getNameUser(): ?string
     {
-        return $this->name;
+        return $this->nameUser;
     }
 
-    public function setName(string $name): self
+    public function setNameUser(string $nameUser): self
     {
-        $this->name = $name;
+        $this->nameUser = $nameUser;
 
         return $this;
     }
 
-    public function getFirstname(): ?string
+    public function getFirstNameUser(): ?string
     {
-        return $this->firstname;
+        return $this->firstNameUser;
     }
 
-    public function setFirstname(string $firstname): self
+    public function setFirstNameUser(string $firstNameUser): self
     {
-        $this->firstname = $firstname;
+        $this->firstNameUser = $firstNameUser;
 
         return $this;
     }
+
 
     public function getPseudo(): ?string
     {
@@ -155,14 +161,14 @@ class Users implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
-    public function getAccountCreationUser(): ?\DateTimeImmutable
+    public function getAccounCreationDateUser(): ?\DateTimeImmutable
     {
-        return $this->accountCreationUser;
+        return $this->accounCreationDateUser;
     }
 
-    public function setAccountCreationUser(\DateTimeImmutable $accountCreationUser): self
+    public function setAccounCreationDateUser(\DateTimeImmutable $accounCreationDateUser): self
     {
-        $this->accountCreationUser = $accountCreationUser;
+        $this->accounCreationDateUser = $accounCreationDateUser;
 
         return $this;
     }
@@ -211,6 +217,18 @@ class Users implements UserInterface, PasswordAuthenticatedUserInterface
     public function setIdRole(?Roles $id_role): self
     {
         $this->id_role = $id_role;
+
+        return $this;
+    }
+
+    public function isVerified(): bool
+    {
+        return $this->isVerified;
+    }
+
+    public function setIsVerified(bool $isVerified): self
+    {
+        $this->isVerified = $isVerified;
 
         return $this;
     }

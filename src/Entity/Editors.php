@@ -14,36 +14,36 @@ class Editors
     private $id;
 
     #[ORM\Column(type: 'string', length: 255)]
-    private $name;
+    private $nameEditor;
 
-    #[ORM\Column(type: 'string', length: 45)]
-    private $country;
+    #[ORM\Column(type: 'string', length: 255, nullable: true)]
+    private $countryEditor;
 
     public function getId(): ?int
     {
         return $this->id;
     }
 
-    public function getName(): ?string
+    public function getNameEditor(): ?string
     {
-        return $this->name;
+        return $this->nameEditor;
     }
 
-    public function setName(string $name): self
+    public function setNameEditor(string $nameEditor): self
     {
-        $this->name = $name;
+        $this->nameEditor = $nameEditor;
 
         return $this;
     }
 
-    public function getCountry(): ?string
+    public function getCountryEditor(): ?string
     {
-        return $this->country;
+        return $this->countryEditor;
     }
 
-    public function setCountry(string $country): self
+    public function setCountryEditor(?string $countryEditor): self
     {
-        $this->country = $country;
+        $this->countryEditor = $countryEditor;
 
         return $this;
     }

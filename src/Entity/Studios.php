@@ -14,36 +14,36 @@ class Studios
     private $id;
 
     #[ORM\Column(type: 'string', length: 255)]
-    private $name;
+    private $nameStudio;
 
-    #[ORM\Column(type: 'string', length: 45)]
-    private $country;
+    #[ORM\Column(type: 'string', length: 255, nullable: true)]
+    private $countryStudio;
 
     public function getId(): ?int
     {
         return $this->id;
     }
 
-    public function getName(): ?string
+    public function getNameStudio(): ?string
     {
-        return $this->name;
+        return $this->nameStudio;
     }
 
-    public function setName(string $name): self
+    public function setNameStudio(string $nameStudio): self
     {
-        $this->name = $name;
+        $this->nameStudio = $nameStudio;
 
         return $this;
     }
 
-    public function getCountry(): ?string
+    public function getCountryStudio(): ?string
     {
-        return $this->country;
+        return $this->countryStudio;
     }
 
-    public function setCountry(string $country): self
+    public function setCountryStudio(?string $countryStudio): self
     {
-        $this->country = $country;
+        $this->countryStudio = $countryStudio;
 
         return $this;
     }

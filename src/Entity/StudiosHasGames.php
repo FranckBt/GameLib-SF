@@ -12,12 +12,12 @@ class StudiosHasGames
     #[ORM\ManyToOne(targetEntity: Studios::class)]
     #[ORM\JoinColumn(nullable: false)]
     private $id_studio;
+
     #[ORM\Id]
     #[ORM\ManyToOne(targetEntity: Games::class)]
     #[ORM\JoinColumn(nullable: false)]
     private $id_game;
 
-  
     public function getIdStudio(): ?Studios
     {
         return $this->id_studio;

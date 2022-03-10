@@ -2,30 +2,30 @@
 
 namespace App\Repository;
 
-use App\Entity\GamesHasPlatforms;
+use App\Entity\Platforms;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\ORM\OptimisticLockException;
 use Doctrine\ORM\ORMException;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
- * @method GamesHasPlatforms|null find($id, $lockMode = null, $lockVersion = null)
- * @method GamesHasPlatforms|null findOneBy(array $criteria, array $orderBy = null)
- * @method GamesHasPlatforms[]    findAll()
- * @method GamesHasPlatforms[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
+ * @method Platforms|null find($id, $lockMode = null, $lockVersion = null)
+ * @method Platforms|null findOneBy(array $criteria, array $orderBy = null)
+ * @method Platforms[]    findAll()
+ * @method Platforms[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
-class GamesHasPlatformsRepository extends ServiceEntityRepository
+class PlatformsRepository extends ServiceEntityRepository
 {
     public function __construct(ManagerRegistry $registry)
     {
-        parent::__construct($registry, GamesHasPlatforms::class);
+        parent::__construct($registry, Platforms::class);
     }
 
     /**
      * @throws ORMException
      * @throws OptimisticLockException
      */
-    public function add(GamesHasPlatforms $entity, bool $flush = true): void
+    public function add(Platforms $entity, bool $flush = true): void
     {
         $this->_em->persist($entity);
         if ($flush) {
@@ -37,7 +37,7 @@ class GamesHasPlatformsRepository extends ServiceEntityRepository
      * @throws ORMException
      * @throws OptimisticLockException
      */
-    public function remove(GamesHasPlatforms $entity, bool $flush = true): void
+    public function remove(Platforms $entity, bool $flush = true): void
     {
         $this->_em->remove($entity);
         if ($flush) {
@@ -46,15 +46,15 @@ class GamesHasPlatformsRepository extends ServiceEntityRepository
     }
 
     // /**
-    //  * @return GamesHasPlatforms[] Returns an array of GamesHasPlatforms objects
+    //  * @return Platforms[] Returns an array of Platforms objects
     //  */
     /*
     public function findByExampleField($value)
     {
-        return $this->createQueryBuilder('g')
-            ->andWhere('g.exampleField = :val')
+        return $this->createQueryBuilder('p')
+            ->andWhere('p.exampleField = :val')
             ->setParameter('val', $value)
-            ->orderBy('g.id', 'ASC')
+            ->orderBy('p.id', 'ASC')
             ->setMaxResults(10)
             ->getQuery()
             ->getResult()
@@ -63,10 +63,10 @@ class GamesHasPlatformsRepository extends ServiceEntityRepository
     */
 
     /*
-    public function findOneBySomeField($value): ?GamesHasPlatforms
+    public function findOneBySomeField($value): ?Platforms
     {
-        return $this->createQueryBuilder('g')
-            ->andWhere('g.exampleField = :val')
+        return $this->createQueryBuilder('p')
+            ->andWhere('p.exampleField = :val')
             ->setParameter('val', $value)
             ->getQuery()
             ->getOneOrNullResult()

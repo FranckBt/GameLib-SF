@@ -2,20 +2,20 @@
 
 namespace App\Entity;
 
-use App\Repository\GamesHasPlatformsRepository;
+use App\Repository\UsersHasPlatformsRepository;
 use Doctrine\ORM\Mapping as ORM;
 
-#[ORM\Entity(repositoryClass: GamesHasPlatformsRepository::class)]
-class GamesHasPlatforms
+#[ORM\Entity(repositoryClass: UsersHasPlatformsRepository::class)]
+class UsersHasPlatforms
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column(type: 'integer')]
     private $id;
 
-    #[ORM\ManyToOne(targetEntity: Games::class)]
+    #[ORM\ManyToOne(targetEntity: Users::class)]
     #[ORM\JoinColumn(nullable: false)]
-    private $id_game;
+    private $id_user;
 
     #[ORM\ManyToOne(targetEntity: Platforms::class)]
     #[ORM\JoinColumn(nullable: false)]
@@ -25,15 +25,15 @@ class GamesHasPlatforms
     {
         return $this->id;
     }
-    
-    public function getIdGame(): ?Games
+
+    public function getIdUser(): ?Users
     {
-        return $this->id_game;
+        return $this->id_user;
     }
 
-    public function setIdGame(?Games $id_game): self
+    public function setIdUser(?Users $id_user): self
     {
-        $this->id_game = $id_game;
+        $this->id_user = $id_user;
 
         return $this;
     }

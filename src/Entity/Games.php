@@ -14,51 +14,51 @@ class Games
     private $id;
 
     #[ORM\Column(type: 'string', length: 255)]
-    private $title;
+    private $titleGame;
 
     #[ORM\Column(type: 'date')]
-    private $releasedate;
+    private $releaseDateGame;
 
     #[ORM\Column(type: 'text')]
-    private $description;
+    private $descriptionGame;
 
     public function getId(): ?int
     {
         return $this->id;
     }
 
-    public function getTitle(): ?string
+    public function getTitleGame(): ?string
     {
-        return $this->title;
+        return $this->titleGame;
     }
 
-    public function setTitle(string $title): self
+    public function setTitleGame(string $titleGame): self
     {
-        $this->title = $title;
+        $this->titleGame = $titleGame;
 
         return $this;
     }
 
-    public function getReleasedate(): ?\DateTimeInterface
+    public function getReleaseDateGame(): ?\DateTimeInterface
     {
-        return $this->releasedate;
+        return $this->releaseDateGame;
     }
 
-    public function setReleasedate(\DateTimeInterface $releasedate): self
+    public function setReleaseDateGame(\DateTimeInterface $releaseDateGame): self
     {
-        $this->releasedate = $releasedate;
+        $this->releaseDateGame = $releaseDateGame;
 
         return $this;
     }
 
-    public function getDescription(): ?string
+    public function getDescriptionGame(): ?string
     {
-        return $this->description;
+        return $this->descriptionGame;
     }
 
-    public function setDescription(string $description): self
+    public function setDescriptionGame(string $descriptionGame): self
     {
-        $this->description = $description;
+        $this->descriptionGame = $descriptionGame;
 
         return $this;
     }
